@@ -1,20 +1,20 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { TypeaheadWithLogic } from "./typeahead_with_logic";
+import { MoviesSearchWithLogic } from "./movies_search_with_logic";
 import * as Api from "../../api";
 import { act } from "react-dom/test-utils";
 
 beforeEach(() => {
   jest.resetAllMocks();
 });
-describe("TypeaheadWithLogic tests with mocked database", () => {
+describe("MoviesSearchWithLogic tests with mocked database", () => {
   let searchInDbSpy = jest.spyOn(Api, "searchMovieApi");
   beforeEach(() => {
     searchInDbSpy.mockRestore();
     searchInDbSpy = jest.spyOn(Api, "searchMovieApi");
   });
   it("Renders movies when searching for a movie and database returns results", async () => {
-    render(<TypeaheadWithLogic />);
+    render(<MoviesSearchWithLogic />);
     // how do we know which movies exist ?
     // to workaround we can mock the implementation of the Database
     searchInDbSpy.mockImplementation(() =>
@@ -31,7 +31,7 @@ describe("TypeaheadWithLogic tests with mocked database", () => {
   });
 
   it("Does not render movies when the search results are empty", async () => {
-    render(<TypeaheadWithLogic />);
+    render(<MoviesSearchWithLogic />);
     // how do simulate the no results state ?
     // to workaround we can mock the implementation of the Database
     searchInDbSpy.mockImplementation(() => Promise.resolve([]));
@@ -46,7 +46,7 @@ describe("TypeaheadWithLogic tests with mocked database", () => {
   });
 
   it("Renders the typed query in the input", async () => {
-    render(<TypeaheadWithLogic />);
+    render(<MoviesSearchWithLogic />);
     searchInDbSpy.mockImplementation(() => Promise.resolve([]));
     const input = screen.getByPlaceholderText("Type movie here");
     await act(async () => {

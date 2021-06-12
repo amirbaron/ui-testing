@@ -1,13 +1,13 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { StatefullTypeahead } from "./statefull_typeahead";
+import { StatefullMoviesSearch } from "./statefull_movies_search";
 
 beforeEach(() => {
   jest.resetAllMocks();
 });
 
-describe("StatefullTypeahead tests", () => {
+describe("StatefullMoviesSearch tests", () => {
   const movies = ["Final destination", "Star wars"];
   const searchMovieApiStub = (
     value: string,
@@ -25,7 +25,7 @@ describe("StatefullTypeahead tests", () => {
   it("Renders the queried movie", async () => {
     const searchMovieApi = jest.fn();
     searchMovieApi.mockImplementation(searchMovieApiStub);
-    render(<StatefullTypeahead searchMovieApi={searchMovieApi} />);
+    render(<StatefullMoviesSearch searchMovieApi={searchMovieApi} />);
     const input = screen.getByPlaceholderText("Type movie here");
     await act(async () => {
       fireEvent.focus(input);

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { StatelessTypeahead } from "./stateless_typeahead";
+import { StatelessMoviesSearch } from "./stateless_movies_search";
 
-export interface StatefullTypeaheadProps {
+export interface StatefullMoviesSearchProps {
   searchMovieApi: (value:string, caseSensetive:boolean)=> Promise<ReadonlyArray<string>>;
 }
 
-export const StatefullTypeahead: React.FC<StatefullTypeaheadProps> = ({searchMovieApi, 
+export const StatefullMoviesSearch: React.FC<StatefullMoviesSearchProps> = ({searchMovieApi, 
   ...props
 }) => {
   const [currentMovieToSearch, setMovieToSearch] = useState("");
@@ -21,7 +21,7 @@ export const StatefullTypeahead: React.FC<StatefullTypeaheadProps> = ({searchMov
     setMovieToSearch(value);
   };
   return (
-    <StatelessTypeahead onChange={onInputChange} currentSuggestedMovies={currentSuggestedMovies}>
-    </StatelessTypeahead>
+    <StatelessMoviesSearch onChange={onInputChange} currentSuggestedMovies={currentSuggestedMovies}>
+    </StatelessMoviesSearch>
   );
 };

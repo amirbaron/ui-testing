@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
-import { searchMovieApi } from "../../api";
-import "./typeahead_with_logic.css";
+import "./stateless_movies_search.css";
 
-export interface TypeaheadWithLogicProps {}
+export interface StatelessMoviesSearchProps {
+  currentSuggestedMovies: ReadonlyArray<string>;
+  onChange: (value: string)=>void;
+}
 
-export const TypeaheadWithLogic: React.FC<TypeaheadWithLogicProps> = ({
+export const StatelessMoviesSearch: React.FC<StatelessMoviesSearchProps> = ({onChange, currentSuggestedMovies, 
   ...props
 }) => {
-  const [currentMovieToSearch, setMovieToSearch] = useState("");
-  const [currentSuggestedMovies, setSuggestedMovies] = useState(
-    [] as ReadonlyArray<string>
-  );
-  useEffect(() => {
-    searchMovieApi(currentMovieToSearch).then((movies) => {
-      setSuggestedMovies(movies);
-    });
-  }, [currentMovieToSearch]);
   const onInputChange = (event: React.FormEvent<HTMLInputElement>) => {
     const newValue = event.currentTarget.value;
-    setMovieToSearch(newValue);
+    onChange(newValue);
   };
   return (
     <>
-      <header>Typeahead Example</header>
+      <header>Movies search example</header>
       <input
         placeholder="Type movie here"
         className="input-field"

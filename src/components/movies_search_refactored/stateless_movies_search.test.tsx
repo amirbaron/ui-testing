@@ -1,17 +1,17 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { StatelessTypeahead } from "./stateless_typeahead";
+import { StatelessMoviesSearch } from "./stateless_movies_search";
 import { act } from "react-dom/test-utils";
-import { StatefullTypeahead } from "./statefull_typeahead";
+import { StatefullMoviesSearch } from "./statefull_movies_search";
 
 beforeEach(() => {
   jest.resetAllMocks();
 });
-describe("StatelessTypeahead tests", () => {
+describe("StatefullMoviesSearch tests", () => {
   beforeEach(() => {});
   it("Renders the given suggested movies", () => {
     render(
-      <StatelessTypeahead
+      <StatelessMoviesSearch
         onChange={(value: string) => {}}
         currentSuggestedMovies={["Movie1", "Movie2"]}
       />
@@ -23,7 +23,7 @@ describe("StatelessTypeahead tests", () => {
 
   it("Does not render movies when the search results are empty", async () => {
     render(
-      <StatelessTypeahead
+      <StatelessMoviesSearch
         onChange={(value: string) => {}}
         currentSuggestedMovies={[]}
       />
@@ -34,7 +34,7 @@ describe("StatelessTypeahead tests", () => {
   it("Renders the typed query in the input and calls onChange", async () => {
     const onChange = jest.fn();
     render(
-      <StatelessTypeahead
+      <StatelessMoviesSearch
         onChange={onChange}
         currentSuggestedMovies={[]}
       />
