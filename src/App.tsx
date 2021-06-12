@@ -1,24 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { TypeaheadWithLogic } from './components/typeahead_with_logic/typeahead_with_logic';
+import { StatefullTypeahead } from './components/typeahead_refactoed/statefull_typeahead';
+import { searchMovieApi } from './api';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <TypeaheadWithLogic></TypeaheadWithLogic> */}
+      <StatefullTypeahead searchMovieApi={searchMovieApi}></StatefullTypeahead>
     </div>
   );
 }
